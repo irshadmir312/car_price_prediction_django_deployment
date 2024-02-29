@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://thumbs.dreamstime.com/b/growth-electric-car-usage-concept-growth-electric-car-usage-concept-240174559.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        select,
+        input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00ff11;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        td {
+            font-size: larger;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <select id="name" name="name">
+            <option value="BMW">BMW</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Peugeot">Peugeot</option>
+            <option value="Mercedes">Mercedes</option>
+            <option value="Škoda">Škoda</option>
+            <option value="Land Rover">Land Rover</option>
+            <option value="Fiat">Fiat</option>
+            <option value="Citroen">Citroen</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Volvo">Volvo</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Audi">Audi</option>
+            <option value="Chevrolet">Chevrolet</option>
+        </select>
+
+        <label for="fuel-type">Fuel Type:</label>
+        <select id="fuel-type" name="fuel-type">
+            <option value="Benzín">Benzín</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Benzín+Plyn">Benzín+Plyn</option>
+            <option value="Hybrid (benzín/elektro)">Hybrid (benzín/elektro)</option>
+            <option value="Hybrid (diesel/elektro)">Hybrid (diesel/elektro)</option>
+            <option value="Elektro">Elektro</option>
+        </select>
+
+        <label for="year_of_make">Year of Make:</label>
+        <input type="number" id="year_of_make" name="year_of_make">
+
+        <label for="kim">Kilometers:</label>
+        <input type="number" id="kim" name="kim">
+
+        <label for="power">Power:</label>
+        <input type="number" id="power" name="power">
+
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if request.method == 'POST' %}
+    <table>
+        <tr>
+            <th>Model</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td><strong><span style="font-size: larger;">Random Forest</span></strong></td>
+            <td><strong><span style="font-size: larger; color: rgb(255, 0, 195);">{{ rf_res }}</span></strong></td>
+        </tr>
+        <tr>
+            <td><strong><span style="font-size: larger;">KNeighbors Regressor</span></strong></td>
+            <td><strong><span style="font-size: larger; color: rgb(67, 13, 231);">{{ knn_res }}</span></strong></td>
+        </tr>
+        <tr>
+            <td><strong><span style="font-size: larger;">Gradient Boosting</span></strong></td>
+            <td><strong><span style="font-size: larger; color: rgb(11, 237, 79);">{{ gb_res }}</span></strong></td>
+        </tr>
+        <tr>
+            <td><strong><span style="font-size: larger;">Ridge Regression</span></strong></td>
+            <td><strong><span style="font-size: larger; color: rgb(244, 16, 149);">{{ ridge_res }}</span></strong></td>
+        </tr>
+    </table>
+    {% endif %}
+</body>
+
+</html>
